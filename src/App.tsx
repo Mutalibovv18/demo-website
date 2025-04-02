@@ -5,6 +5,10 @@ import { motion } from 'framer-motion';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Zap, Target, Brain, BarChart as ChartBar, Users, Clock, Shield, Sparkles, Notebook as Robot, Trophy, Database, Gauge, HelpCircle } from 'lucide-react';
 import { User } from "lucide-react";
+import dilbar from './components/images/dilbar.jpeg'
+import random from './components/images/random.jpg'
+import curly from './components/images/curly.jpg'
+import about from './components/images/about.jpg'
 
 function App() {
   const [isDark, setIsDark] = useState(true);
@@ -32,9 +36,9 @@ function App() {
   };
 
   const teamMembers = [
-    { name: "John Doe", role: "CEO & Founder", image: "/images/john.jpg" },
-    { name: "Jane Smith", role: "Head of Strategy", image: "/images/jane.jpg" },
-    { name: "Mike Johnson", role: "Lead Designer", image: "/images/mike.jpg" },
+    { name: "Dilbar", role: "CEO & Founder", image: dilbar },
+    { name: "Jane Smith", role: "Head of Strategy", image: random },
+    { name: "Mike Johnson", role: "Lead Designer", image: curly },
     { name: "Emily Davis", role: "Marketing Director", image: "/images/emily.jpg" }
   ];
 
@@ -180,7 +184,6 @@ function App() {
 
 
 
-     {/* About Us Section */}
 <section id="about" className="py-20 px-4 relative bg-white dark:bg-black text-black dark:text-white overflow-hidden">
   {/* Dark Mode Gradient (Only on BG, Text & Image Stay Clear) */}
   <div className="absolute inset-0 bg-gradient-to-b from-black via-red-600 to-transparent opacity-40 dark:block hidden pointer-events-none"></div>
@@ -191,7 +194,7 @@ function App() {
   <div className="container mx-auto relative z-10">
     <div className="flex flex-col md:flex-row items-center gap-12">
       
-      {/* Image First on Mobile */}
+      {/* Image Section */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -199,11 +202,13 @@ function App() {
         viewport={{ once: true }}
         className="w-full md:w-1/2 relative z-10"
       >
-        <img 
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-          alt="eveRise Team"
-          className="rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-500"
-        />
+        <div className="relative w-full h-72 md:h-96 overflow-hidden rounded-lg">
+          <img 
+            src={about}
+            alt="eveRise Team"
+            className="w-full h-full object-cover object-center transform transition-transform duration-500 hover:scale-110"
+          />
+        </div>
       </motion.div>
 
       {/* Text Section */}
@@ -214,16 +219,16 @@ function App() {
         viewport={{ once: true }}
         className="w-full md:w-1/2 relative z-10 text-center md:text-left"
       >
-        <h2 className="text-5xl font-extrabold leading-tight mb-6 text-black dark:text-white bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent">
+        <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6 text-black dark:text-white bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent">
           About Us
         </h2>
-        <p className="text-xl leading-relaxed text-gray-800 dark:text-gray-300 mb-6">
+        <p className="text-lg md:text-xl leading-relaxed text-gray-800 dark:text-gray-300 mb-6">
           Founded in 2024, eveRise is a forward-thinking agency built on innovation, strategy, and deep industry insights. We don’t just run campaigns—we craft experiences that connect brands with their audiences on a deeper level.
         </p>
-        <p className="text-xl leading-relaxed text-gray-800 dark:text-gray-300 mb-6">
+        <p className="text-lg md:text-xl leading-relaxed text-gray-800 dark:text-gray-300 mb-6">
           Our team is composed of creative thinkers, data-driven strategists, and technology enthusiasts who work together to push boundaries in the digital space.
         </p>
-        <p className="text-xl leading-relaxed text-gray-800 dark:text-gray-300">
+        <p className="text-lg md:text-xl leading-relaxed text-gray-800 dark:text-gray-300">
           At eveRise, we believe in constant evolution, adapting to the latest trends, and ensuring our clients always stay ahead of the curve.
         </p>
       </motion.div>
@@ -234,8 +239,7 @@ function App() {
 
 
 
-      {/* Why We're Different Section */}
-      <section className="py-20 px-4 bg-white dark:bg-black text-black dark:text-white relative">
+<section className="py-20 px-4 bg-white dark:bg-black text-black dark:text-white relative">
   {/* Dark Mode Gradient (Only on BG, Text & Image Stay Clear) */}
   <div className="absolute inset-0 bg-gradient-to-t from-black via-red-600 to-transparent opacity-30 dark:block hidden pointer-events-none"></div>
 
@@ -247,6 +251,7 @@ function App() {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white"
     >
       Why We're Different
@@ -255,45 +260,43 @@ function App() {
       {[
         {
           title: "AI-Powered Optimization",
-          description: "Our proprietary AI algorithms analyze millions of data points to optimize your campaigns in real-time",
+          description: "Our proprietary AI algorithms analyze millions of data points to optimize your campaigns in real-time.",
           icon: Robot
         },
         {
           title: "Predictive Analytics",
-          description: "Advanced forecasting models to predict campaign performance and optimize budget allocation",
+          description: "Advanced forecasting models to predict campaign performance and optimize budget allocation.",
           icon: ChartBar
         },
         {
           title: "Industry Expertise",
-          description: "Over $50M in managed ad spend across various industries with proven success",
+          description: "Over $50M in managed ad spend across various industries with proven success.",
           icon: Trophy
         },
         {
           title: "Real-Time Monitoring",
-          description: "24/7 automated campaign monitoring with instant adjustments and alerts",
+          description: "24/7 automated campaign monitoring with instant adjustments and alerts.",
           icon: Gauge
         },
         {
           title: "Data-Driven Strategy",
-          description: "Custom strategies built on comprehensive market analysis and competitor data",
+          description: "Custom strategies built on comprehensive market analysis and competitor data.",
           icon: Database
         },
         {
           title: "Innovation Focus",
-          description: "Early adopters of new ad technologies and continuous platform optimization",
+          description: "Early adopters of new ad technologies and continuous platform optimization.",
           icon: Sparkles
         }
       ].map((reason, index) => (
         <motion.div
           key={reason.title}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: index * 0.1 }}
-          className="p-6 rounded-lg bg-black/60 backdrop-blur-sm hover:shadow-xl transition-all duration-300 group relative overflow-hidden"
+          transition={{ delay: index * 0.15, duration: 0.6, ease: "easeOut" }}
+          className="p-6 rounded-lg bg-black/60 backdrop-blur-sm transition-all duration-300 group relative overflow-hidden border-2 border-transparent hover:border-red-500 hover:shadow-[0_0_20px_rgba(255,0,0,0.4)] hover:scale-105"
         >
-          {/* Red Gradient Overlay on Hover */}
-          <div className="absolute inset-0 bg-gradient-to-r from-red-500 via-red-600 to-red-700 opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
           <div className="flex items-center mb-4">
             <reason.icon className="w-8 h-8 text-red-600 group-hover:scale-110 transition-transform duration-300" />
             <h3 className="text-xl font-bold ml-3 text-white">{reason.title}</h3>
@@ -304,6 +307,7 @@ function App() {
     </div>
   </div>
 </section>
+
 
 
 <section id="services" className="py-20 px-4 bg-white dark:bg-black text-black dark:text-white relative">
@@ -318,6 +322,7 @@ function App() {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white"
     >
       Our Services
@@ -342,15 +347,12 @@ function App() {
       ].map((service, index) => (
         <motion.div
           key={service.title}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: index * 0.2 }}
-          className="relative p-8 rounded-lg bg-black/60 backdrop-blur-sm hover:shadow-xl transition-all duration-300 group"
+          transition={{ delay: index * 0.15, duration: 0.6, ease: "easeOut" }}
+          className="relative p-8 rounded-lg bg-black/60 backdrop-blur-sm transition-all duration-300 group border-2 border-transparent hover:border-red-500 hover:shadow-[0_0_20px_rgba(255,0,0,0.4)] hover:scale-105"
         >
-          {/* Red Gradient Overlay on Hover */}
-          <div className="absolute inset-0 bg-gradient-to-r from-red-500 via-red-600 to-red-700 opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
-
           {/* Content */}
           <div className="relative z-10">
             <service.icon className="w-12 h-12 text-red-600 mb-4 group-hover:scale-110 transition-transform duration-300" />
@@ -362,7 +364,6 @@ function App() {
     </div>
   </div>
 </section>
-
 
 
 
@@ -378,7 +379,7 @@ function App() {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white"
     >
       Our Process
@@ -404,16 +405,16 @@ function App() {
     </div>
 
     {/* Process Steps */}
-    <div className="bg-black/60 backdrop-blur-sm rounded-lg p-8 shadow-lg">
+    <div className="bg-black/60 rounded-lg p-8 shadow-lg">
       <div className="space-y-6">
         {processData[activeTimeframe].map((step, index) => (
           <motion.div
             key={step.name}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, rotateY: 90 }}
+            whileInView={{ opacity: 1, rotateY: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.15, duration: 0.4, ease: "easeOut" }}
-            className="relative p-6 rounded-lg bg-black/60 backdrop-blur-sm hover:shadow-xl transition-all duration-300 group"
+            transition={{ delay: index * 0.15, duration: 0.2, ease: "easeOut" }}
+            className="relative p-6 rounded-lg bg-black/60 hover:shadow-xl transition-all duration-300 group"
           >
             {/* Red Gradient Overlay on Hover */}
             <div className="absolute inset-0 bg-gradient-to-r from-red-500 via-red-600 to-red-700 opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
@@ -434,7 +435,12 @@ function App() {
     </div>
   </div>
 </section>
-<section className="py-20 px-4 bg-white dark:bg-black text-black dark:text-white relative">
+
+    
+
+
+
+<section  className="py-20 px-4 bg-white dark:bg-black text-black dark:text-white relative">
       {/* Light Mode Gradient */}
       <div className="absolute inset-0 bg-gradient-to-t from-white via-gray-300 to-transparent opacity-20 light:block hidden pointer-events-none"></div>
 
@@ -481,7 +487,63 @@ function App() {
     
       
     
- <section className="py-20 px-4 bg-white dark:bg-black text-black dark:text-white relative">
+ 
+      {/* FAQ Section */}
+      <section className="py-20 px-4 bg-black/40">
+  <div className="container mx-auto max-w-4xl">
+    <h2 className="text-4xl font-bold text-center mb-12 text-white">
+      Frequently Asked Questions
+    </h2>
+    <div className="space-y-6">
+      {[
+        {
+          question: "What happens during the strategy call?",
+          answer:
+            "During the 30-minute call, we'll discuss your business goals, current ad performance, and outline a custom strategy to scale your brand using paid advertising.",
+        },
+        {
+          question: "Do I need to prepare anything?",
+          answer:
+            "Having basic information about your current marketing efforts and business goals is helpful, but not required. We'll guide the conversation to get the information we need.",
+        },
+        {
+          question: "Is this really free?",
+          answer:
+            "Yes, the strategy call is completely free with no obligations. We believe in providing value upfront and letting our expertise speak for itself.",
+        },
+        {
+          question: "How soon can we start working together?",
+          answer:
+            "If we're a good fit, we can typically begin implementing your custom strategy within 48-72 hours of the call.",
+        },
+        {
+          question: "What makes your approach different?",
+          answer:
+            "We combine AI-powered optimization with human expertise to create data-driven strategies that consistently outperform traditional approaches.",
+        },
+      ].map((faq, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.2, duration: 0.5, ease: "easeOut" }}
+          className="bg-black/60 backdrop-blur-sm rounded-lg p-6 border-2 border-transparent transition-all duration-300 ease-in-out hover:border-red-600 hover:scale-105"
+        >
+          <div className="flex items-start">
+            <HelpCircle className="w-6 h-6 text-red-600 mr-3 flex-shrink-0 mt-1" />
+            <div>
+              <h3 className="text-xl font-bold text-white mb-2">{faq.question}</h3>
+              <p className="text-gray-300">{faq.answer}</p>
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section id='contact' className="py-20 px-4 bg-white dark:bg-black text-black dark:text-white relative">
     {/* Light Mode Gradient */}
     <div className="absolute inset-0 bg-gradient-to-t from-white via-red-200 to-transparent opacity-20 light:block hidden pointer-events-none"></div>
 
@@ -555,105 +617,51 @@ function App() {
       </motion.div>
     </div>
   </section>
-      {/* FAQ Section */}
-      <section className="py-20 px-4 bg-black/40">
-  <div className="container mx-auto max-w-4xl">
-    <h2 className="text-4xl font-bold text-center mb-12 text-white">
-      Frequently Asked Questions
-    </h2>
-    <div className="space-y-6">
-      {[
-        {
-          question: "What happens during the strategy call?",
-          answer:
-            "During the 30-minute call, we'll discuss your business goals, current ad performance, and outline a custom strategy to scale your brand using paid advertising.",
-        },
-        {
-          question: "Do I need to prepare anything?",
-          answer:
-            "Having basic information about your current marketing efforts and business goals is helpful, but not required. We'll guide the conversation to get the information we need.",
-        },
-        {
-          question: "Is this really free?",
-          answer:
-            "Yes, the strategy call is completely free with no obligations. We believe in providing value upfront and letting our expertise speak for itself.",
-        },
-        {
-          question: "How soon can we start working together?",
-          answer:
-            "If we're a good fit, we can typically begin implementing your custom strategy within 48-72 hours of the call.",
-        },
-        {
-          question: "What makes your approach different?",
-          answer:
-            "We combine AI-powered optimization with human expertise to create data-driven strategies that consistently outperform traditional approaches.",
-        },
-      ].map((faq, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: index * 0.2, duration: 0.5, ease: "easeOut" }}
-          className="bg-black/60 backdrop-blur-sm rounded-lg p-6 border-2 border-transparent transition-all duration-300 ease-in-out hover:border-red-600 hover:scale-105"
-        >
-          <div className="flex items-start">
-            <HelpCircle className="w-6 h-6 text-red-600 mr-3 flex-shrink-0 mt-1" />
-            <div>
-              <h3 className="text-xl font-bold text-white mb-2">{faq.question}</h3>
-              <p className="text-gray-300">{faq.answer}</p>
-            </div>
-          </div>
-        </motion.div>
-      ))}
+
+  <footer className="bg-black text-white py-12 px-4">
+  <div className="container mx-auto">
+    <div className="grid md:grid-cols-4 gap-8">
+      <div>
+        <div className="flex items-center mb-4">
+          <span className="relative text-3xl font-bold flex items-center">
+            <span className="text-[#631b16]">eve</span>
+            <span className={`${isDark ? "text-white" : "text-black"}`}>Rise</span>
+          </span>
+        </div>
+        <p className="text-gray-400">
+          Transforming brands through AI-powered paid advertising.
+        </p>
+      </div>
+      <div>
+        <h3 className="text-lg font-bold mb-4">Quick Links</h3>
+        <ul className="space-y-2">
+          <li><a href="#" className="text-gray-400 hover:text-white">Home</a></li>
+          <li><a href="#about" className="text-gray-400 hover:text-white">About</a></li>
+          <li><a href="#services" className="text-gray-400 hover:text-white">Services</a></li>
+          <li><a href="#process" className="text-gray-400 hover:text-white">Process</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 className="text-lg font-bold mb-4">Services</h3>
+        <ul className="space-y-2">
+          <li><a href="#" className="text-gray-400 hover:text-white">Paid Ads</a></li>
+          <li><a href="#" className="text-gray-400 hover:text-white">Unit Economy</a></li>
+          <li><a href="#" className="text-gray-400 hover:text-white">AI Automation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 className="text-lg font-bold mb-4">Contact</h3>
+        <ul className="space-y-2">
+          <li className="text-gray-400">contact@everrise.com</li>
+          <li className="text-gray-400">+1 (555) 123-4567</li>
+        </ul>
+      </div>
+    </div>
+    <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+      <p>&copy; {new Date().getFullYear()} EverRise. All rights reserved.</p>
     </div>
   </div>
-</section>
-
-      {/* Footer */}
-      <footer className="bg-black text-white py-12 px-4">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center mb-4">
-                <Zap className="w-8 h-8 text-red-600" />
-                <span className="ml-2 text-xl font-bold">AdScale</span>
-              </div>
-              <p className="text-gray-400">
-                Transforming brands through AI-powered paid advertising.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-white">Home</a></li>
-                <li><a href="#about" className="text-gray-400 hover:text-white">About</a></li>
-                <li><a href="#services" className="text-gray-400 hover:text-white">Services</a></li>
-                <li><a href="#process" className="text-gray-400 hover:text-white">Process</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold mb-4">Services</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-white">Meta Ads</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white">Google Ads</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white">AI Automation</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white">Analytics</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold mb-4">Contact</h3>
-              <ul className="space-y-2">
-                <li className="text-gray-400">contact@adscale.com</li>
-                <li className="text-gray-400">+1 (555) 123-4567</li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; {new Date().getFullYear()} AdScale. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+</footer>
 
       <Navigation />
     </div>
